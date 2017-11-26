@@ -45,6 +45,22 @@ class Marco
 		FlxTween.tween(lado4, {alpha:0}, 3, {type: FlxTween.PINGPONG});
 	}
 	
+	public function kill():Void
+	{
+		lado.kill();
+		lado2.kill();
+		lado3.kill();
+		lado4.kill();
+	}
+	
+	public function revive():Void
+	{
+		lado.revive();
+		lado2.revive();
+		lado3.revive();
+		lado4.revive();
+	}
+	
 	function get_lado():FlxSprite 
 	{
 		return lado;

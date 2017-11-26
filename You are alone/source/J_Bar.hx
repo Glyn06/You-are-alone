@@ -72,7 +72,7 @@ class J_Bar extends FlxBar
 	{
 		FlxFlicker.flicker(this, 0.2, 0.06, true, false);
 		FlxFlicker.flicker(text, 0.2, 0.06, true, false);
-		FlxG.camera.shake(0.01, 0.5);
+		//FlxG.camera.shake(0.01, 0.5);
 	}
 	
 }
