@@ -22,7 +22,7 @@ class J_Bar3 extends J_Bar
 		set_fillDirection(RIGHT_TO_LEFT);
 		text = new FlxText(x,y+height / 2 - 5, 0, "ConstruirGenerador", 8, false);
 		createFilledBar(0xffff0000, 0xff000000, true, 0xffffffff);
-		cantGenText = new FlxText(x + 50, y + height / 2 - 5, 0, "Cantidad generadores: " + Resources.generadoresPolv, 8);
+		cantGenText = new FlxText(x + 50, y + height / 2 - 5, 0, "Cantidad generadores: " + Resources.generadoresEXP, 8);
 		FlxG.state.add(cantGenText);
 		
 		addToTheWorld();
@@ -32,10 +32,10 @@ class J_Bar3 extends J_Bar
 	{
 		super.update(elapsed);
 		
-		if (Resources.generadoresPolv > Resources.generadoresPolv-1 || Resources.generadoresPolv < Resources.generadoresPolv+1) //Update del texto generador
+		if (Resources.generadoresEXP > Resources.generadoresEXP-1 || Resources.generadoresEXP < Resources.generadoresEXP+1) //Update del texto generador
 		{
 			cantGenText.destroy();
-			cantGenText = new FlxText(x + 100, y + height / 2 - 5, 0, "Cantidad generadores: " + Resources.generadoresPolv, 8);
+			cantGenText = new FlxText(x + 100, y + height / 2 - 5, 0, "Cantidad generadores: " + Resources.generadoresEXP, 8);
 			FlxG.state.add(cantGenText);
 		}
 	}
@@ -44,7 +44,7 @@ class J_Bar3 extends J_Bar
 	{
 		super.action();
 		
-		Resources.generadoresPolv++;
+		Resources.generadoresEXP++;
 	}
 	
 }
