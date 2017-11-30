@@ -48,6 +48,7 @@ class J_Bar2 extends J_Bar
 	{
 		super.action();
 		
-		
+		Resources.empleados++;
+		Resources.recursos--;
 	}
 }

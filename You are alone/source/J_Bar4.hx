@@ -33,8 +33,25 @@ class J_Bar4 extends J_Bar
 	{
 		super.action();
 		
-		Resources.polvora--;
-		Resources.explosivos += 100;
+		if (Resources.polvora <= 0) 
+		{
+			
+		}
+		else
+		{
+			Resources.polvora--;
+			Resources.explosivos++;
+			if (Resources.polvora - Resources.maquinas <= 0) 
+			{
+				
+			}
+			else 
+			{
+				Resources.polvora -= Resources.maquinas;
+				Resources.explosivos += Resources.maquinas;
+			}
+			
+		}
 	}
 	
 }
