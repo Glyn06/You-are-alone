@@ -3,6 +3,8 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.effects.particles.FlxEmitter;
+import flixel.math.FlxRandom;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.ui.FlxBar;
@@ -25,6 +27,7 @@ class PlayState extends FlxState
 	private var maquinasLvl:FlxText;
 	private var empleadosLvl:FlxText;
 	private var CantRecursos:FlxText;
+	private var CantAliens:FlxText;
 	
 	private var timerGenerador:Float = 0;
 	private var timerGenerador_end:Float = 1;
@@ -33,6 +36,7 @@ class PlayState extends FlxState
 	private var doNOTcomebackEXP = false;
 	private var DONTYOUFUCKINGDARE = false;
 	private var ITS_TIME = false;
+	private var startAlienInvasion = false;
 	
 	private var counter:Int = 0;
 	
@@ -56,6 +60,9 @@ class PlayState extends FlxState
 		CantRecursos = new FlxText(312, 220, 0, "Recursos: " + Resources.recursos, 16);
 		add(CantRecursos);
 		
+		CantAliens = new FlxText(650, 636, 0, "Aliens: " + Resources.aliens, 32);
+		add(CantAliens);
+		
 		marco = new Marco(0, 0);
 		marco2 = new Marco(960, 0);
 		marco3 = new Marco(1920, 0);
@@ -67,6 +74,7 @@ class PlayState extends FlxState
 		maquinasLvl.kill();
 		empleadosLvl.kill();
 		CantRecursos.kill();
+		CantAliens.kill();
 		marco2.kill();
 		marco3.kill();
 		b.kill();
@@ -78,7 +86,6 @@ class PlayState extends FlxState
 		super.update(elapsed);
 		
 		updateText();
-		
 		
 		if (doNOTcomeback == false && Resources.explosivos >= 100)
 		{
@@ -103,6 +110,8 @@ class PlayState extends FlxState
 		{
 			//audio nos invaden los aliens
 			bar6 = new J_Bar6(64, 636);
+			CantAliens.revive();
+			startAlienInvasion = true;
 			DONTYOUFUCKINGDARE = true;
 		}
 		
@@ -113,25 +122,25 @@ class PlayState extends FlxState
 			counter++;
 		}
 		
-		if 	(counter == 1 && Resources.explosivos >= 1000) 
+		if 	(counter == 1 && Resources.explosivos >= 650) 
 		{
 			Resources.recursos++;
 			counter++;
 		}
 		
-		if 	(counter == 2 && Resources.explosivos >= 1500) 
+		if 	(counter == 2 && Resources.explosivos >= 800) 
 		{
 			Resources.recursos++;
 			counter++;
 		}
 		
-		if 	(counter == 3 && Resources.explosivos >= 3000) 
+		if 	(counter == 3 && Resources.explosivos >= 850) 
 		{
 			Resources.recursos++;
 			counter++;
 		}
 		
-		if 	(counter == 4 && Resources.explosivos >= 6000) 
+		if 	(counter == 4 && Resources.explosivos >= 1000) 
 		{
 			Resources.recursos++;
 			counter++;
@@ -153,9 +162,18 @@ class PlayState extends FlxState
 				Resources.explosivos += Resources.generadoresEXP;
 			}
 			
+			if (startAlienInvasion == true && Resources.aliens != 0)
+			{
+				Resources.aliens += 2;
+			}
+			
 			timerGenerador = 0;
 		}
 		
+		if (Resources.aliens == 0) 
+		{
+			FlxG.switchState(new WinState());
+		}
 	}
 	
 	public function updateText():Void//////////////////////////////////////////////////////////////////////////////////////
@@ -193,6 +211,13 @@ class PlayState extends FlxState
 			CantRecursos.destroy();
 			CantRecursos = new FlxText(312, 220, 0, "Recursos: " + Resources.recursos, 16);
 			add(CantRecursos);
+		}
+		
+		if (startAlienInvasion == true && Resources.aliens > Resources.aliens-1 || startAlienInvasion == true && Resources.aliens < Resources.aliens+1) //Update de texto aliens
+		{
+			CantAliens.destroy();
+			CantAliens = new FlxText(650, 636, 0, "Aliens: " + Resources.aliens, 32);
+			add(CantAliens);
 		}
 	}
 }

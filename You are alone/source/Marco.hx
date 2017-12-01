@@ -2,7 +2,9 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.effects.particles.FlxEmitter;
 import flixel.system.FlxAssets.FlxGraphicAsset;
+import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
 /**
@@ -15,6 +17,11 @@ class Marco
 	public var lado2(get, null):FlxSprite;
 	public var lado3(get, null):FlxSprite;
 	public var lado4(get, null):FlxSprite;
+	
+	public var emmiter:FlxEmitter;
+	public var emmiter2:FlxEmitter;
+	public var emmiter3:FlxEmitter;
+	public var emmiter4:FlxEmitter;
 
 	public function new(x:Int = 0, y:Int = 0)
 	{
@@ -39,10 +46,31 @@ class Marco
 		
 		FlxG.state.add(lado4);
 		
-		FlxTween.tween(lado, {alpha:0}, 3, {type: FlxTween.PINGPONG});
-		FlxTween.tween(lado2, {alpha:0}, 3, {type: FlxTween.PINGPONG});
-		FlxTween.tween(lado3, {alpha:0}, 3, {type: FlxTween.PINGPONG});
-		FlxTween.tween(lado4, {alpha:0}, 3, {type: FlxTween.PINGPONG});
+		FlxTween.tween(lado, {alpha:0}, 3, {type: FlxTween.PINGPONG, ease: FlxEase.quadInOut});
+		FlxTween.tween(lado2, {alpha:0}, 3, {type: FlxTween.PINGPONG,ease: FlxEase.quadInOut});
+		FlxTween.tween(lado3, {alpha:0}, 3, {type: FlxTween.PINGPONG,ease: FlxEase.quadInOut});
+		FlxTween.tween(lado4, {alpha:0}, 3, {type: FlxTween.PINGPONG, ease: FlxEase.quadInOut});
+		
+		emmiter = new FlxEmitter(x, y, 200);
+		emmiter.makeParticles(5, 5, 0xff2f4f4f, 200);
+		emmiter.start(false, 0.1, 0);
+		
+		emmiter2 = new FlxEmitter(x, y, 200);
+		emmiter2.makeParticles(5, 5, 0xff2f4f4f, 200);
+		emmiter2.start(false, 0.1, 0);
+		
+		emmiter3 = new FlxEmitter(x + 928, y, 200);
+		emmiter3.makeParticles(5, 5, 0xff2f4f4f, 200);
+		emmiter3.start(false, 0.1, 0);
+		
+		emmiter4 = new FlxEmitter(x, y + 688, 200);
+		emmiter4.makeParticles(5, 5, 0xff2f4f4f, 200);
+		emmiter4.start(false, 0.1, 0);
+		
+		FlxG.state.add(emmiter);
+		FlxG.state.add(emmiter2);
+		FlxG.state.add(emmiter3);
+		FlxG.state.add(emmiter4);
 	}
 	
 	public function kill():Void

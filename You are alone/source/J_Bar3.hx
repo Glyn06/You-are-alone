@@ -15,7 +15,7 @@ class J_Bar3 extends J_Bar
 
 	public function new(x:Float=0, y:Float=0, ?direction:FlxBarFillDirection, width:Int=100, height:Int=50, ?parentRef:Dynamic, variable:String="", min:Float=0, max:Float=100, showBorder:Bool=false) 
 	{
-		maxTime = 60;
+		maxTime = 30;
 		super(x, y, direction, width, height, parentRef, variable, 0, maxTime, showBorder);
 		
 		setParent(this, "time");

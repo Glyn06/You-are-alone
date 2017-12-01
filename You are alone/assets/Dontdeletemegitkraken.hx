@@ -2,9 +2,9 @@ package;
 
 /**
  * ...
- * @author ffg
+ * @author Joshua
  */
-class NOBORRESESTOlACONCHADETUMADRE 
+class Dontdeletemegitkraken 
 {
 
 	public function new() 
